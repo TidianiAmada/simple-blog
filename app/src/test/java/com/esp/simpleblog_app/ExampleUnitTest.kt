@@ -1,4 +1,4 @@
-package com.esp.simple_blog
+package com.esp.simpleblog_app
 
 import org.junit.Test
 
