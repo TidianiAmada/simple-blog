@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         for (a in articles){
             Log.i("MainActivity","database article: "+ a)
         }
+        ArticleAdapter(this,articles)
         val button:FloatingActionButton =findViewById(R.id.floatingActionButton)
         button.setOnClickListener {
             setContentView(R.layout.new_article)
