@@ -1,20 +1,27 @@
 package com.esp.simpleblog_app
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val database = Database(this)
+        val recyclerview= findViewById<RecyclerView>(R.id.recyclerview)
+        recyclerview.layoutManager=LinearLayoutManager(this)
+
 
         if (database.getArticlesCount()==0){
             database.ajouterArticle(
@@ -30,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         for (a in articles){
             Log.i("MainActivity","database article: "+ a)
         }
-        ArticleAdapter(this,articles)
+        val adapter=ArticleAdapter(this,articles)
+        recyclerview.adapter=adapter
         val button:FloatingActionButton =findViewById(R.id.floatingActionButton)
         button.setOnClickListener {
             setContentView(R.layout.new_article)
