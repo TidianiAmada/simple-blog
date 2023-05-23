@@ -3,7 +3,6 @@ package com.esp.simpleblog_app
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -39,10 +38,12 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter=ArticleAdapter(this,articles)
         recyclerview.adapter=adapter
-        val button:FloatingActionButton =findViewById(R.id.floatingActionButton)
-        button.setOnClickListener {
+        val addButton:FloatingActionButton =findViewById(R.id.ic_add)
+
+
+        addButton.setOnClickListener {
             setContentView(R.layout.new_article)
-            val titreEditText:EditText = findViewById(R.id.article_titre)
+            val titreEditText:EditText = findViewById(R.id.titre)
             val auteurEditText:EditText = findViewById(R.id.auteur)
             val contenuEditText:EditText= findViewById(R.id.contenu)
             val ajouterButton: Button =findViewById(R.id.button)
@@ -51,9 +52,14 @@ class MainActivity : AppCompatActivity() {
                 val auteur=auteurEditText.text.toString()
                 val contenu=contenuEditText.text.toString()
                 database.ajouterArticle(Article(title,auteur,contenu,"20/02/2022"))
+                onCreate(savedInstanceState)
             }
-
+            val closeButton:FloatingActionButton =findViewById(R.id.ic_close)
+            closeButton.setOnClickListener {
+                onCreate(savedInstanceState)
+            }
         }
+
 
     }
 }

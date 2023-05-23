@@ -27,8 +27,8 @@ class Database(context: Context) : SQLiteOpenHelper(context,"test.db",null,1) {
         writableDatabase.insert("articles",null,values)
     }
     @SuppressLint("Range")
-    fun getAllArticles(): MutableList<Article>{
-        val articles= mutableListOf<Article>()
+    fun getAllArticles(): List<Article>{
+        val articles= ArrayList<Article>()
         readableDatabase.rawQuery("SELECT * FROM articles",null).use {
                 cursor ->  while (cursor.moveToNext()){
                     val article=Article(cursor.getString(cursor.getColumnIndex("titre")),
