@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 val auteur=auteurEditText.text.toString()
                 val contenu=contenuEditText.text.toString()
                 database.ajouterArticle(Article(title,auteur,contenu,"20/02/2022"))
-                onCreate(savedInstanceState)
             }
             val closeButton:FloatingActionButton =findViewById(R.id.ic_close)
             closeButton.setOnClickListener {
